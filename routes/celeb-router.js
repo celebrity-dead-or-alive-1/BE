@@ -16,7 +16,7 @@ celebRouter.get("/:id", (req, res) => {
 		.then(celeb => {
 			res.json(celeb);
 		})
-		.catch(err => res.json({ err: err }))
+		.catch(err => res.status(404).json({ msg: `id ${req.params.id} doesn't exist.` }))
 });
 
 celebRouter.post("/", (req, res) => {
@@ -37,7 +37,7 @@ celebRouter.put("/", (req, res) => {
 		.catch(err => res.json({ err: err }));
 });
 
-celebRouter.delete("/:id", (req, res) => {
+celebRouter.delete("/del/:id", (req, res) => {
 	celebDB.remove(req.params.id)
 		.then(celeb => {
 			res.json(celeb);
