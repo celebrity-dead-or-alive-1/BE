@@ -1,38 +1,34 @@
-const db = require('./dbConfig.js');
+const db = require("./dbConfig.js");
 
 module.exports = {
-    add,
-    getAll,
-    getById,
-    change,
-    remove
+	add,
+	getAll,
+	getById,
+	change,
+	remove
 };
 
 async function add(celeb) {
-    // sends info, gets id back
-    // id is destructured from an array?
-    const [id] = await db('celeb').insert(celeb);
-
-    return getById(id);
+	const [id] = await db("celebrity").insert(celeb);
+	return getById(id);
 }
 
 function getAll() {
-    return db('celeb');
+	return db("celebrity");
 }
 
 function getById(id) {
-    return db('celeb')
-        .where({ id })
-        .first();
+	return db("celebrity")
+		.where({ id })
+		.first();
 }
 
 function change(id, celeb) {
-    return db("celeb")
-        .where({ id })
-        .update(celeb)
+	db("celebrity").where({ id }).update(celeb);
+	return getById(id);
 }
-function remove(celeb) {
-    return db('celeb')
-        .where({ celeb })
-        .first();
+function remove(id) {
+	return db("celebrity")
+		.where({ id })
+		.first();
 }
