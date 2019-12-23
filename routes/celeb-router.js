@@ -8,7 +8,7 @@ celebRouter.get("/", (req, res) => {
 		.then(celeb => {
 			res.json(celeb);
 		})
-		.catch(err => res.send(err));
+		.catch(err => res.json({ err: err }));
 });
 
 celebRouter.get("/:id", (req, res) => {
@@ -16,7 +16,7 @@ celebRouter.get("/:id", (req, res) => {
 		.then(celeb => {
 			res.json(celeb);
 		})
-		.catch(err => res.send(err));
+		.catch(err => res.json({ err: err }))
 });
 
 celebRouter.post("/", (req, res) => {
@@ -24,24 +24,28 @@ celebRouter.post("/", (req, res) => {
 		.then(celeb => {
 			res.json(celeb);
 		})
-		.catch(err => res.send(err));
+		.catch(err => res.json({ err: err }));
 });
 
 celebRouter.put("/", (req, res) => {
-	res.json({warning: "This endpoint is incomplete at the moment."})
-	// celebDB.change(req.params.id, req.body)
-	// 	.then(celeb => {
-	// 		res.json(celeb);
-	// 	})
-	// 	.catch(err => res.send(err));
-});
+	clg("32", req.body);
 
-celebRouter.delete("/", (req, res) => {
-	celebDB.find()
+	celebDB.change(req.body)
 		.then(celeb => {
 			res.json(celeb);
 		})
-		.catch(err => res.send(err));
+		.catch(err => res.json({ err: err }));
+});
+
+celebRouter.delete("/:id", (req, res) => {
+	celebDB.remove(req.params.id)
+		.then(celeb => {
+			res.json(celeb);
+		})
+		.catch(err => res.json({ err: err }));
 });
 
 module.exports = celebRouter;
+
+
+function clg(...x) { console.log(...x) }

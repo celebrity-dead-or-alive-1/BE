@@ -23,12 +23,22 @@ function getById(id) {
 		.first();
 }
 
-function change(id, celeb) {
-	db("celebrity").where({ id }).update(celeb);
-	return getById(id);
+function change(celeb) {
+	const id = celeb.id;
+	console.log("28",id,celeb)
+	return db("celebrity")
+		.where({ id })
+		.update(celeb)
+		.then(ct => (
+			ct != 0 && getById(id)
+		))
 }
+
 function remove(id) {
 	return db("celebrity")
 		.where({ id })
-		.first();
+		.del();
 }
+
+
+function clg(...x) { console.log(...x) };
