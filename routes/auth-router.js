@@ -1,11 +1,11 @@
-const router = require('express').Router();
+const authRouter = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const userDB = require('../data/user-model.js');
 
 const SECRET = process.env.JWT_SECRET || "secret phrase";
 
-router.post("/register", (req, res) => {
+authRouter.post("/register", (req, res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 8);
     user.password = hash;
@@ -19,7 +19,7 @@ router.post("/register", (req, res) => {
         })
 })
 
-router.post("/login", (req, res) => {
+authRouter.post("/login", (req, res) => {
     let { username, password } = req.body;
     userDB.getBy({ username })
         .first()
@@ -39,8 +39,6 @@ router.post("/login", (req, res) => {
         });
 })
 
-
-
 function signToken(user) {
     const payload = {};
     // +SECRET 
@@ -50,3 +48,5 @@ function signToken(user) {
 
     return jwt.sign(payload, SECRET, options)
 }
+
+module.exports = authRouter;
