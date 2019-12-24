@@ -10,9 +10,15 @@ module.exports = {
 async function add(user) {
 	// sends info, gets id back
 	// id is destructured from an array?
-	const [id] = await db('users').insert(user);
+	clg(13, user)
+	if (!user.username || !user.password || !user.email ) {
+		return ({ err: "Incomplete registration info. Check that all fields are sent." })
+	} else {
+		const [id] = await db('users').insert(user);
+		clg(15, id)
 
-	return findById(id);
+		return getById(id);
+	}
 }
 
 function getAll() {
@@ -28,3 +34,5 @@ function getById(id) {
 		.where({ id })
 		.first();
 }
+
+function clg(...x) { console.log(...x) };

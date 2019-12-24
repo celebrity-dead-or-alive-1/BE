@@ -11,6 +11,14 @@ celebRouter.get("/", (req, res) => {
 		.catch(err => res.json({ err: err }));
 });
 
+celebRouter.get("/count", (req, res) => {
+	celebDB.count()
+		.then(celeb => {
+			res.json(celeb);
+		})
+		.catch(err => res.json({ err: err }));
+});
+
 celebRouter.get("/:id", (req, res) => {
 	celebDB.getById(req.params.id)
 		.then(celeb => {

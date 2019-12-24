@@ -5,7 +5,8 @@ module.exports = {
 	getAll,
 	getById,
 	change,
-	remove
+	remove,
+	count
 };
 
 async function add(celeb) {
@@ -15,6 +16,12 @@ async function add(celeb) {
 
 function getAll() {
 	return db("celebrity");
+}
+
+function count() {
+	return db("celebrity")
+	.count("celebname", {as: "count"})
+	.first()
 }
 
 function getById(id) {

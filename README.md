@@ -11,9 +11,10 @@
 | HTTP | Path               | route method | Desc                                   | Data|
 |-|-|-|-|-|
 | GET  | /api/celeb/        | getAll       | Gets the full list of all celebrities. | Returns an array of `getById` objects.|
+| GET  | /api/celeb/count   | getCount     | Gets the number of celebs in the DB.   | Returns an object `{"count": 5}`|
 | GET  | /api/celeb/:id     | getById      | Gets the celeb at that id.             | Returns a `getById` object.|
-| POST | /api/celeb/        | add          | Adds a celeb | Expects `getById` json object *without id*. Returns `getById` object.|
-| PUT  | /api/celeb/        | change       | Edits an existing celeb.               | Returns a `getById` object.|
+| POST | /api/celeb/        | add          | Adds a celeb | **Expects** `getById` json object *without id*. **Returns** `getById` object.|
+| PUT  | /api/celeb/        | change       | Edits an existing celeb. | **Expects** `getById` json object *including id*. **Returns** the new and improved `getById` object.||
 | DEL  | /api/celeb/del/:id | remove       | Deleted celeb at that id.              | Returns 1 if successful.|||||||
 
 
