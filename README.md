@@ -39,5 +39,5 @@
 | POST | /api/auth/register | Gets the full list of all celebrities. | Expects `{username:"", password:"", email:""}`|
 ||||Returns `{ "id":##, "username":""}`|
 | POST | /api/auth/login    | Gets the number of celebs in the DB.   |  Expects `{username:"", password:""}`|
-||||Returns `{ "token":"", "id":"", "username":"", "email":"", "admin": ["true"\|"false"] }`|
+||||Returns `{ "token":"", "id":"", "username":"", "email":"", "admin": [[true\|false]] }`|
 
