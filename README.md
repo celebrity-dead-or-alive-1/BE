@@ -14,7 +14,7 @@
 | GET  | /api/celeb/count   | getCount     | Gets the number of celebs in the DB.   | Returns an object `{"count": 5}`|
 | GET  | /api/celeb/:id     | getById      | Gets the celeb at that id.             | Returns a `getById` object.|
 | POST | /api/celeb/        | add          | Adds a celeb | **Expects** `getById` json object *without id*. **Returns** `getById` object.|
-| PUT  | /api/celeb/        | change       | Edits an existing celeb. | **Expects** `getById` json object *including id*. **Returns** the new and improved `getById` object.||
+| PUT  | /api/celeb/        | change       | Edits an existing celeb. | **Expects** `getById` json object ***including id***. **Returns** the new and improved `getById` object.||
 | DEL  | /api/celeb/del/:id | remove       | Deleted celeb at that id.              | Returns 1 if successful.|||||||
 
 
@@ -34,12 +34,9 @@
 
 # Users Table
 
-- `POST` - all fields are required *except id*.
-- `PUT` - all fields are required ***including*** *id*.
-
 | HTTP | Path               | Desc                                   | Data|
 |-|-|-|-|
 | POST | /api/auth/register | Gets the full list of all celebrities. | Expects `{username:"", password:"", email:""}`|
 ||||Returns `{ "id":##, "username":""}`|
 | POST | /api/auth/login    | Gets the number of celebs in the DB.   |  Expects `{username:"", password:"", email:""}`|
-||||Returns `{ "token":"", "id":"", "username":"", "email":"", "admin": [[true|false]],`|
+||||Returns `{ "token":"", "id":"", "username":"", "email":"", "admin": [[true\|false]] }` |
