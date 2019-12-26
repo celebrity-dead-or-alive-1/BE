@@ -30,7 +30,7 @@
 	"alive": 0
 }
 ```
-
+---
 
 # `users` Table
 
@@ -54,7 +54,7 @@
 	"admin": [[true | false]]
 }
 ```
-
+---
 
 # `scores` Table
 
