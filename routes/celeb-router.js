@@ -4,6 +4,11 @@ const celebDB = require("../data/celeb-model.js");
 const userDB = require("../data/user-model.js");
 const restricted = require("../middleware/authenticate-middleware.js");
 
+/* 
+SWITCH COMMENT lines 11/12 for non-destructive testing of 
+`restricted` middleware
+ */
+// celebRouter.get("/", restricted, (req, res) => {
 celebRouter.get("/", restricted, (req, res) => {
 	celebDB.getAll()
 		.then(celeb => {
