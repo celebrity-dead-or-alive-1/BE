@@ -1,11 +1,9 @@
 const jwt = require("jsonwebtoken");
-const SECRET = process.env.JWT_SECRET || "cmon carl don't be a goof.";
-
-function clg(...x) { console.log(...x) }
+const SECRET = process.env.JWT_SECRET || "secret phrase";
 
 module.exports = (req, res, next) => {
+	clg(5,"Auth Middleware")
 	const { authorization } = req.headers;
-	// clg(authorization)
 
 	if (authorization) {
 		jwt.verify(authorization, SECRET, function (err, decodedToken) {
@@ -13,7 +11,12 @@ module.exports = (req, res, next) => {
 				res.status(401).json({ message: "Invalid Token" });
 			} else {
 				req.token = decodedToken;
-				next();
+				clg(14, decodedToken.admin);
+				if (!decodedToken.admin) {
+					res.status(418).json({ message: "Not Allowed" });
+				} else {
+					next();
+				}
 			}
 		});
 	} else {
@@ -21,3 +24,4 @@ module.exports = (req, res, next) => {
 	}
 };
 
+function clg(...x) { console.log(...x) }
