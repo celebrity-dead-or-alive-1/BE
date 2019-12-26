@@ -1,7 +1,7 @@
 # BE
 
 
-# Celebrity Table
+# `celebrity` Table
 
 - Field contents are not checked for formatting or proper data. *Garbage in, garbage out.*
 - Check the `getById` output example below for the fields to send.
@@ -32,7 +32,7 @@
 ```
 
 
-# Users Table
+# `users` Table
 
 | HTTP | Path               | Desc                                   | Data|
 |-|-|-|-|
@@ -44,7 +44,7 @@
 ||||Use `admin` flag to limit access to the form used for `create`/`update`/`delete` of celebs.|
 
 
-## `loginObj` example
+## `loginObj` object example
 ```
 {
 	"token": "",
@@ -52,6 +52,24 @@
 	"username": "",
 	"email": "",
 	"admin": [[true | false]]
+}
+```
+
+
+# `scores` Table
+
+| HTTP | Path               | route method | Desc                                   | Data|
+|-|-|-|-|-|
+| GET  | /api/scores/:id| getAllScoresForUser  | Gets  all scores for a user. | Given an id in the path, returns an array of `score` objects.|
+| POST  | /api/scores   | setOneUserScore |  Saves one score.  | **Expects** `score` json object. **Returns** the db id.|
+
+## `score` object example
+```
+{
+	"id": 2,
+	"score": 14,
+	"user_id": 1,
+	"time": 17
 }
 ```
 
