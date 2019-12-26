@@ -1,8 +1,8 @@
 const celebRouter = require("express").Router();
 
 const celebDB = require("../data/celeb-model.js");
-const userDB = require("../data/user-model.js");
 const restricted = require("../middleware/authenticate-middleware.js");
+
 
 /* 
 SWITCH COMMENT lines 11/12 for non-destructive testing of 

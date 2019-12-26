@@ -4,7 +4,11 @@ module.exports = {
 	add,
 	getAll,
 	getBy,
-	getById
+	getById,
+	
+	/* getAllScores, */
+	setOneUserScore,
+	/* getAllUserScores, */
 };
 
 async function add(user) {
@@ -34,6 +38,18 @@ function getById(id) {
 	return db('users')
 		.where({ id })
 		.first();
+}
+
+async function setOneUserScore(data) {
+	clg(40, data);
+	if (data.id && data.score && data.time ) {
+		const [score] = await db('scores').insert(data);
+		clg(17, score)
+
+		return score;
+	} else {
+		return ({ err: "Incomplete SCORE data. Check that all fields are sent." })
+	}
 }
 
 function clg(...x) { console.log(...x) };

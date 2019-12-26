@@ -40,3 +40,6 @@
 ||||Returns `{ "id":##, "username":""}`|
 | POST | /api/auth/login    | Gets the number of celebs in the DB.   |  Expects `{username:"", password:""}`|
 |||Use `admin` flag to limit access to the form used for `create`/`update`/`delete` of celebs|Returns `{ "token":"", "id":"", "username":"", "email":"", "admin": [[true\|false]] }` |
+
+---
+*Tables made with https://www.tablesgenerator.com/markdown_tables#*
