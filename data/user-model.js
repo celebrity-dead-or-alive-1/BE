@@ -8,8 +8,10 @@ module.exports = {
 	
 	/* getAllScores, */
 	setOneUserScore,
-	/* getAllUserScores, */
+	getAllScoresForUser
 };
+
+// #region user db functions
 
 async function add(user) {
 	// sends info, gets id back
@@ -40,9 +42,11 @@ function getById(id) {
 		.first();
 }
 
+// #endregion
+
 async function setOneUserScore(data) {
-	clg(40, data);
-	if (data.id && data.score && data.time ) {
+	clg(48, data);
+	if (data.score && data.user_id && data.time ) {
 		const [score] = await db('scores').insert(data);
 		clg(17, score)
 
@@ -50,6 +54,10 @@ async function setOneUserScore(data) {
 	} else {
 		return ({ err: "Incomplete SCORE data. Check that all fields are sent." })
 	}
+}
+
+function getAllScoresForUser(user_id) {
+	return db("scores").where({ user_id })
 }
 
 function clg(...x) { console.log(...x) };
