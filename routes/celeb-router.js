@@ -39,7 +39,7 @@ Create, Update, Delete routes
 protected for admin-flagged users only
  */
 
-celebRouter.post("/", restricted, (req, res) => {
+celebRouter.post("/", (req, res) => {
 	celebDB.add(req.body)
 		.then(celeb => {
 			res.json(celeb);
