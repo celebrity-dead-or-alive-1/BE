@@ -44,10 +44,13 @@ describe("User routes", () => {
 			const chkGetAll = await celebdb.getAll();
 			expect(Array.isArray(chkGetAll)).toBe(true);
 		});
-		it("should return 1 element object with value as integer", async () => {
+		it("should return an `object` of `1 element` with `value as integer`", async () => {
 			// console.log(">>> > > >",server);
 			const chkCount = await celebdb.count();
+			expect(Object.keys(chkCount).length).toBe(1);
+			expect(typeof chkCount === 'object' && chkCount !== null).toBe(true);
 			expect(Number.isInteger(chkCount.count)).toBe(true);
 		});
 	});
 });
+
