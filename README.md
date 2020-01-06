@@ -60,13 +60,12 @@
 
 | HTTP | Path               | route method | Desc                                   | Data|
 |-|-|-|-|-|
-| GET  | /api/scores/:id| getAllScoresForUser  | Gets  all scores for a user. | Given an id in the path, returns an array of `score` objects.|
-| POST  | /api/scores   | setOneUserScore |  Saves one score.  | **Expects** `score` json object. **Returns** the db id.|
+| GET  | /api/users/scores/:id| getAllScoresForUser  | Gets  all scores for a user. | Given an id in the path, returns an array of `score` objects.|
+| POST  | /api/users/scores   | setOneUserScore |  Saves one score.  | **Expects** `score` json object. **Returns** the db id.|
 
 ## `score` object example
 ```
 {
-	"id": 2,
 	"score": 14,
 	"user_id": 1,
 	"time": 17
