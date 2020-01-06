@@ -18,13 +18,17 @@ userRouter.post('/score', (req, res) => {
 
 userRouter.get("/score/:id", (req, res) => {
 	userDB.getAllScoresForUser(req.params.id)
-		.then(scores => {
-			res.json(scores);
-		})
-		.catch(err => res.status(404).json({
-			msg: `id ${req.params.id} doesn't exist.`,
-			err: err
-		}))
+	.then(scores => {
+		res.json(scores);
+	})
+	.catch(err => res.status(404).json({
+		msg: `id ${req.params.id} doesn't exist.`,
+		err: err
+	}))
+});
+
+userRouter.get('*', (req, res) => {
+	res.status(404).json("Not Found.");
 });
 
 

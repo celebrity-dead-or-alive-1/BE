@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
 			}
 		});
 	} else {
-		res.status(400).json({ message: "Please login and try again" });
+		res.status(401).json({ message: "Please login and try again" });
 	}
 };
 
