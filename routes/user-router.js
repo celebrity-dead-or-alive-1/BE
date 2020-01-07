@@ -4,8 +4,8 @@ const userDB = require("../data/user-model.js");
 const restricted = require("../middleware/authenticate-middleware.js");
 
 
-// userRouter.post('/score', /* restricted,  */(req, res) => {
-userRouter.post('/score', (req, res) => {
+userRouter.post('/score', restricted, (req, res) => {
+// userRouter.post('/score', (req, res) => {
 	let score = req.body;
 	clg(score);
 	userDB.setOneUserScore(score)
@@ -15,7 +15,7 @@ userRouter.post('/score', (req, res) => {
 		.catch(err => res.status(500).send(err));
 });
 
-userRouter.get("/score/:id", (req, res) => {
+userRouter.get("/score/:id", restricted, (req, res) => {
 	userDB.getAllScoresForUser(req.params.id)
 	.then(scores => {
 		res.json(scores);

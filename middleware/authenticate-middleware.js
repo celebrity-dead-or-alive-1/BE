@@ -11,17 +11,17 @@ module.exports = (req, res, next) => {
 				res.status(401).json({ message: "Invalid Token" });
 			} else {
 				req.token = decodedToken;
-				clg(14, decodedToken.admin);
-				if (!decodedToken.admin) {
-				// if (!decodedToken) {
-					res.status(418).json({ message: "Not Allowed" });
+				// clg(14, decodedToken.admin);
+				// if (!decodedToken.admin) {
+				if (!decodedToken) {
+					res.status(403).json({ message: "Not Allowed" });
 				} else {
 					next();
 				}
 			}
 		});
 	} else {
-		res.status(401).json({ message: "Please login and try again" });
+		res.status(403).json({ message: "Please login and try again" });
 	}
 };
 

@@ -4,33 +4,34 @@
 
 //
 const request = require("supertest");
-const server = require("../api/server.js");
+const server = require("./server.js");
 
 const celebdb = require("../data/celeb-model.js");
+const userdb = require("../data/user-model.js");
 const db = require("../data/dbConfig");
 
 describe("User routes", () => {
+
 	describe("\nRoute checks", () => {
-		it("should return `404 not found`", () => {
+		it("`/invalid` should return `404 not found`", () => {
 			return request(server)
 				.get("/invalid")
 				.then(res => {
 					expect(res.status).toBe(404);
 				});
 		});
-		it("should return `200 OK`", () => {
+		it("`/` should return `200 OK`", () => {
 			return request(server)
 				.get("/")
 				.then(res => {
 					expect(res.status).toBe(200);
 				});
 		});
-		it("should return `401 Unauthorized`", () => {
+		it("`/celeb/del/1` should return `401 Unauthorized`", () => {
 			return request(server)
 				.delete("/api/celeb/del/1")
 				.then(res => {
-					// console.log(res)
-					expect(res.status).toBe(401);
+					expect(res.status).toBe(403);
 				});
 		});
 	});
@@ -42,7 +43,7 @@ describe("User routes", () => {
 		});
 	});
 	
-	describe("\nCount data", () => {
+	describe("\nCelebrity count data", () => {
 		it("should be an `object`", async () => {
 			const chkCount = await celebdb.count();
 			expect(Object.keys(chkCount).length).toBe(1);
@@ -54,6 +55,28 @@ describe("User routes", () => {
 		it("should have `value as integer`", async () => {
 			const chkCount = await celebdb.count();
 			expect(Number.isInteger(chkCount.count)).toBe(true);
+		});
+	});
+
+	describe("\nScore checks", () => {
+		it("`/topten` should return an array", async () => {
+			const chkTopTen = await userdb.getAllScoresForUser(1);
+			expect(Array.isArray(chkTopTen)).toBe(true);
+		});
+		it("`/score/:id` should have `username` key", async () => {
+			const chkScoreList = await userdb.getTopTen();
+			expect(chkScoreList[0].hasOwnProperty('username')).toBe(true);
+		});
+	});
+
+	describe("\nUser DB checks", () => {
+		it("`get all users` should return an array", async () => {
+			const getAllUsers = await userdb.getAll();
+			expect(Array.isArray(getAllUsers)).toBe(true);
+		});
+		it("`get user 0` should have `username` key", async () => {
+			const getUserById = await userdb.getById(1);
+			expect(getUserById.hasOwnProperty('email')).toBe(true);
 		});
 	});
 
