@@ -10,7 +10,7 @@ const celebdb = require("../data/celeb-model.js");
 const db = require("../data/dbConfig");
 
 describe("User routes", () => {
-/* 	describe("\nRoute checks", () => {
+	describe("\nRoute checks", () => {
 		it("should return `404 not found`", () => {
 			// console.log(">>> > > >",server);
 			return request(server)
@@ -36,7 +36,7 @@ describe("User routes", () => {
 					expect(res.status).toBe(401);
 				});
 		});
-	}); */
+	});
 
 	describe("\nDB output checks", () => {
 		it("should return an array", async () => {
@@ -44,11 +44,22 @@ describe("User routes", () => {
 			const chkGetAll = await celebdb.getAll();
 			expect(Array.isArray(chkGetAll)).toBe(true);
 		});
-		it("should return an `object` of `1 element` with `value as integer`", async () => {
-			// console.log(">>> > > >",server);
+	});
+	
+	describe("\nCount data", () => {
+		it("should be an `object`", async () => {
 			const chkCount = await celebdb.count();
+			// console.log(">>> > > >",server);
 			expect(Object.keys(chkCount).length).toBe(1);
+		});
+		it("should be `1 element`", async () => {
+			const chkCount = await celebdb.count();
+			// console.log(">>> > > >",server);
 			expect(typeof chkCount === 'object' && chkCount !== null).toBe(true);
+		});
+		it("should have `value as integer`", async () => {
+			const chkCount = await celebdb.count();
+			// console.log(">>> > > >",server);
 			expect(Number.isInteger(chkCount.count)).toBe(true);
 		});
 	});
