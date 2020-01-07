@@ -64,7 +64,8 @@ celebRouter.put("/", (req, res) => {
 		.catch(err => res.status(500).json({ msg: err }))
 });
 
-celebRouter.delete("/del/:id", restricted, (req, res) => {
+celebRouter.delete("/del/:id", (req, res) => {
+// celebRouter.delete("/del/:id", restricted, (req, res) => {
 	celebDB.remove(req.params.id)
 		.then(celeb => {
 			res.status(celeb.status).json( celeb );
