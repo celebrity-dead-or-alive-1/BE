@@ -49,11 +49,9 @@ async function setOneUserScore(data) {
 	clg(48, data);
 	if (data.score && data.user_id && data.time) {
 		const [score] = await db('scores').insert(data);
-		clg(17, score)
-
-		return score;
+		return ({ status: 201, msg: score });
 	} else {
-		return ({ err: "Incomplete SCORE data. Check that all fields are sent." })
+		return ({ status: 418, msg: "Incomplete SCORE data. Check that all fields are sent." })
 	}
 }
 

@@ -8,8 +8,8 @@ const restricted = require("../middleware/authenticate-middleware.js");
 SWITCH COMMENT lines 11/12 for non-destructive testing of 
 `restricted` middleware
  */
-celebRouter.get("/", (req, res) => {
-// celebRouter.get("/", restricted, (req, res) => {
+// celebRouter.get("/", (req, res) => {
+celebRouter.get("/", restricted, (req, res) => {
 	celebDB.getAll()
 		.then(celeb => {
 			res.json(celeb);

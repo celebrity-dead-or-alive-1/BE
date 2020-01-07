@@ -10,10 +10,10 @@ userRouter.post('/score', (req, res) => {
 	clg(score);
 	userDB.setOneUserScore(score)
 		.then(set => {
-			res.status(201).json({ message: set });
+
+			res.status(set.status).json( set.msg );
 		})
-		.catch(err => res.send(err));
-	// res.status(200).json("OK");
+		.catch(err => res.status(500).send(err));
 });
 
 userRouter.get("/score/:id", (req, res) => {

@@ -36,9 +36,9 @@
 
 | HTTP | Path               | Desc                                   | Data|
 |-|-|-|-|
-| POST | /api/auth/register | Registers new user. | Expects `{username:"", password:"", email:""}`|
+| POST | /api/auth/register | Registers new user. | Expects `{"username":"", "password":"", "email":""}`|
 ||||Returns `{ "id":##, "username":""}`|
-| POST | /api/auth/login    | Logs in a user.   |  Expects `{username:"", password:""}`|
+| POST | /api/auth/login    | Logs in a user.   |  Expects `{"username":"", "password":""}`|
 ||||Returns `loginObj` below.|
 ||||`create`/`update`/`delete` of celebs *must* have HTTP header `Authorization: <token>`|
 ||||Use `admin` flag to limit access to the form used for `create`/`update`/`delete` of celebs.|
