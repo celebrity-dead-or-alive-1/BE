@@ -60,8 +60,9 @@
 
 | HTTP | Path               | route method | Desc                                   | Data|
 |-|-|-|-|-|
-| GET  | /api/users/scores/:id| getAllScoresForUser  | Gets  all scores for a user. | Given an id in the path, returns an array of `score` objects.|
+| GET  | /api/users/scores/:id| getAllScoresForUser  | Gets  all scores for a user. | Given an id in the path, returns an array of `score` objects including scores table id.|
 | POST  | /api/users/scores   | setOneUserScore |  Saves one score.  | **Expects** `score` json object. **Returns** the db id.|
+| GET  | /api/users/topten| getTopTen  | Gets ten highest scores. | Returns an array of `topten` objects.|
 
 ## `score` object example
 ```
@@ -70,6 +71,15 @@
 	"user_id": 1,
 	"time": 17
 }
+```
+
+## `topten` object example
+```
+{
+	"score": 17,
+	"time": 42,
+	"username": "Glibber"
+},
 ```
 
 ---
