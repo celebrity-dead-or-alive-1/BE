@@ -12,7 +12,6 @@ const db = require("../data/dbConfig");
 describe("User routes", () => {
 	describe("\nRoute checks", () => {
 		it("should return `404 not found`", () => {
-			// console.log(">>> > > >",server);
 			return request(server)
 				.get("/invalid")
 				.then(res => {
@@ -20,7 +19,6 @@ describe("User routes", () => {
 				});
 		});
 		it("should return `200 OK`", () => {
-			// console.log(">>> > > >",server);
 			return request(server)
 				.get("/")
 				.then(res => {
@@ -28,7 +26,6 @@ describe("User routes", () => {
 				});
 		});
 		it("should return `401 Unauthorized`", () => {
-			// console.log(">>> > > >",server);
 			return request(server)
 				.delete("/api/celeb/del/1")
 				.then(res => {
@@ -40,7 +37,6 @@ describe("User routes", () => {
 
 	describe("\nDB output checks", () => {
 		it("should return an array", async () => {
-			// console.log(">>> > > >",server);
 			const chkGetAll = await celebdb.getAll();
 			expect(Array.isArray(chkGetAll)).toBe(true);
 		});
@@ -49,19 +45,18 @@ describe("User routes", () => {
 	describe("\nCount data", () => {
 		it("should be an `object`", async () => {
 			const chkCount = await celebdb.count();
-			// console.log(">>> > > >",server);
 			expect(Object.keys(chkCount).length).toBe(1);
 		});
 		it("should be `1 element`", async () => {
 			const chkCount = await celebdb.count();
-			// console.log(">>> > > >",server);
 			expect(typeof chkCount === 'object' && chkCount !== null).toBe(true);
 		});
 		it("should have `value as integer`", async () => {
 			const chkCount = await celebdb.count();
-			// console.log(">>> > > >",server);
 			expect(Number.isInteger(chkCount.count)).toBe(true);
 		});
 	});
+
+	// test against users and scores routes
 });
 

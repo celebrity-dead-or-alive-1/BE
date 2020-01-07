@@ -13,6 +13,7 @@ module.exports = (req, res, next) => {
 				req.token = decodedToken;
 				clg(14, decodedToken.admin);
 				if (!decodedToken.admin) {
+				// if (!decodedToken) {
 					res.status(418).json({ message: "Not Allowed" });
 				} else {
 					next();
