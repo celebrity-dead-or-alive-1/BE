@@ -10,7 +10,6 @@ userRouter.post('/score', (req, res) => {
 	clg(score);
 	userDB.setOneUserScore(score)
 		.then(set => {
-
 			res.status(set.status).json( set.msg );
 		})
 		.catch(err => res.status(500).send(err));

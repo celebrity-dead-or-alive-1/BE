@@ -15,7 +15,7 @@ authRouter.post("/register", (req, res) => {
             res.status(201).json({ id: saved.id, username: saved.username });
         })
         .catch(err => {
-            res.status(500).json({ err: err })
+            res.status(500).json({ msg: err })
         })
 })
 
@@ -44,7 +44,7 @@ authRouter.post("/login", (req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ err: err })
+            res.status(500).json({ msg: err })
         });
 })
 

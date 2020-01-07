@@ -9,12 +9,19 @@ SWITCH COMMENT lines 11/12 for non-destructive testing of
 `restricted` middleware
  */
 celebRouter.get("/", (req, res) => {
-// celebRouter.get("/", restricted, (req, res) => {
 	celebDB.getAll()
 		.then(celeb => {
 			res.json(celeb);
 		})
-		.catch(err => res.json({ err: err }));
+		.catch(err => res.status(500).json({ msg: err }))
+});
+
+celebRouter.get("/r", restricted, (req, res) => {
+	celebDB.getAll()
+		.then(celeb => {
+			res.json(celeb);
+		})
+		.catch(err => res.status(500).json({ msg: err }))
 });
 
 celebRouter.get("/count", (req, res) => {
@@ -22,15 +29,15 @@ celebRouter.get("/count", (req, res) => {
 		.then(celeb => {
 			res.json(celeb);
 		})
-		.catch(err => res.json({ err: err }));
+		.catch(err => res.status(500).json({ msg: err }))
 });
 
 celebRouter.get("/:id", (req, res) => {
 	celebDB.getById(req.params.id)
-	.then(celeb => {
-		res.json(celeb);
-	})
-	.catch(err => res.status(404).json({ msg: `id ${req.params.id} doesn't exist.` }))
+		.then(celeb => {
+			res.json(celeb);
+		})
+		.catch(err => res.status(404).json({ msg: `id ${req.params.id} doesn't exist.` }))
 });
 
 
@@ -42,27 +49,27 @@ protected for admin-flagged users only
 celebRouter.post("/", (req, res) => {
 	celebDB.add(req.body)
 		.then(celeb => {
-			res.json(celeb);
+			res.status(celeb.status).json( celeb.msg );
 		})
-		.catch(err => res.json({ err: err }));
+		.catch(err => res.status(500).json({ msg: err }))
 });
 
-celebRouter.put("/", restricted, (req, res) => {
-	clg("32", req.body);
-
+// celebRouter.put("/", restricted, (req, res) => {
+celebRouter.put("/", (req, res) => {
+	// clg(59, req.body);
 	celebDB.change(req.body)
 		.then(celeb => {
-			res.json(celeb);
+			res.status(celeb.status).json( celeb );
 		})
-		.catch(err => res.json({ err: err }));
+		.catch(err => res.status(500).json({ msg: err }))
 });
 
 celebRouter.delete("/del/:id", restricted, (req, res) => {
 	celebDB.remove(req.params.id)
 		.then(celeb => {
-			res.json(celeb);
+			res.status(celeb.status).json( celeb );
 		})
-		.catch(err => res.json({ err: err }));
+		.catch(err => res.status(500).json({ msg: err }))
 });
 
 //  #region busted /round route

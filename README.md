@@ -14,8 +14,8 @@
 | GET  | /api/celeb/count   | getCount     | Gets the number of celebs in the DB.   | Returns an object `{"count": 5}`|
 | GET  | /api/celeb/:id     | getById      | Gets the celeb at that id.             | Returns a `getById` object.|
 | POST | /api/celeb/        | add          | Adds a celeb | **Expects** `getById` json object *without id*. **Returns** `getById` object.|
-| PUT  | /api/celeb/        | change       | Edits an existing celeb. | **Expects** `getById` json object ***including id***. **Returns** the new and improved `getById` object.||
-| DEL  | /api/celeb/del/:id | remove       | Deleted celeb at that id.              | Returns 1 if successful.|||||||
+| PUT  | /api/celeb/        | change       | Edits an existing celeb. | **Expects** `getById` json object ***including id***. **Returns** an object: `{"status": ###, "success": [[1\|0]],"msg": "id# Update successful."}`.||
+| DEL  | /api/celeb/del/:id | remove       | Deleted celeb at that id.              | Returns an object: `{"status": ###,    "success": [[1\|0]],    "msg": "DELETE successful."}`|||||||
 
 
 ## `getById` object example
