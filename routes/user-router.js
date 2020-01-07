@@ -27,6 +27,14 @@ userRouter.get("/score/:id", (req, res) => {
 	}))
 });
 
+userRouter.get("/topten", (req, res) => {
+	userDB.getTopTen()
+	.then(scores => {
+		res.json(scores);
+	})
+	.catch(err => res.json({err: err}))
+});
+
 userRouter.get('*', (req, res) => {
 	res.status(404).json("Not Found.");
 });
