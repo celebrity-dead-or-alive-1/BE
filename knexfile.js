@@ -5,7 +5,7 @@ module.exports = {
     development: {
         client: "sqlite3",
         connection: {
-            filename: "./data/celeb.db3",
+            filename: process.env.DATABASE_URL,
         },
         useNullAsDefault: true,
         migrations: {

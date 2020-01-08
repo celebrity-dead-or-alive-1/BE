@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const userDB = require('../data/user-model.js');
 
-const SECRET = process.env.JWT_SECRET || "secret phrase";
+const SECRET = process.env.JWT_SECRET;
 
 authRouter.post("/register", (req, res) => {
     let user = req.body;
