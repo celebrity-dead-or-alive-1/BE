@@ -1,4 +1,0 @@
-PORT = 14040
-DB_CONNECT = "development"
-DATABASE_URL = "./data/celeb.db3
-JWT_SECRET = "DON'T TELL NOBODY NUTN"
