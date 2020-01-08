@@ -20,7 +20,7 @@ async function add(user) {
 
 	clg(14, user)
 	if (user.username && user.password && user.email) {
-		const [id] = await db('users').insert(user);
+		const [id] = await db('users').insert(user, "id");
 		clg(17, id)
 
 		return getById(id);

@@ -2,7 +2,7 @@
 # LOCAL CONFIG
 
 # sqlite database
-*.db3
+data/celeb.db3
 
 # # END LOCAL CONFIG
 # # END LOCAL CONFIG
@@ -111,3 +111,4 @@ dist
 
 # TernJS port file
 .tern-port
+
