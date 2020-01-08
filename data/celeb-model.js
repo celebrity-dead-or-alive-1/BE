@@ -10,10 +10,10 @@ module.exports = {
 };
 
 async function add(celeb) {
-
 	if (celeb.celebname && celeb.image_url && celeb.factoid && celeb.birthyear && celeb.alive) {
-		const [celeb] = await db("celebrity").insert(celeb);
-		return ({ status: 201, msg: getById(celeb) });
+		const [output] = await db("celebrity").insert(celeb, "id");
+		clg(13,output)
+		return ({ status: 201, msg: getById(output) });
 	} else {
 		return ({ status: 418, msg: "Incomplete CELEBRITY info. Check that all fields are sent." })
 	}
