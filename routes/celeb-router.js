@@ -36,9 +36,9 @@ celebRouter.get("/:id", (req, res) => {
 	celebDB.getById(req.params.id)
 		.then(celeb => {
 			clg(38,celeb);
-			res.status(celeb.status).json( celeb.msg );
+			res.status(200).json( celeb );
 		})
-		.catch(err => res.status(404).json({ msg: `id ${req.params.id} doesn't exist.` }))
+		.catch(err => res.status(404).json({ msg: `id ${req.params.id} doesn't exist.`, err: err }))
 });
 
 
