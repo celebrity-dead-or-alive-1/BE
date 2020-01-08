@@ -9,16 +9,6 @@ module.exports = {
 	count
 };
 
-// async function add(celeb) {
-// 	if (celeb.celebname && celeb.image_url && celeb.factoid && celeb.birthyear && (celeb.alive !== null)) {
-// 		const [output] = await db("celebrity").insert(celeb, "id");
-// 		clg(17,[output])
-// 		return ({ status: 201, msg: getById(output) });
-// 	} else {
-// 		return ({ status: 418, msg: "Incomplete CELEBRITY info. Check that all fields are sent." })
-// 	}
-// }
-
 async function add(celeb) {
 	if (
 	  celeb.celebname &&
