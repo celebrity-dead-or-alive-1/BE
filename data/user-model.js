@@ -48,7 +48,7 @@ function getById(id) {
 async function setOneUserScore(data) {
 	clg(48, data);
 	if (data.score && data.user_id && data.time) {
-		const [score] = await db('scores').insert(data);
+		const [score] = await db('scores').insert(data, "id");
 		return ({ status: 201, msg: score });
 	} else {
 		return ({ status: 418, msg: "Incomplete SCORE data. Check that all fields are sent." })

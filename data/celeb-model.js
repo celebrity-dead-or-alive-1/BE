@@ -57,8 +57,8 @@ function count() {
 		.first()
 }
 
-function getById(id) {
-	return db("celebrity")
+async function getById(id) {
+	return await db("celebrity")
 		.where({ id })
 		.first();
 }
