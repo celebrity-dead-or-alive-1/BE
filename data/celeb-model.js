@@ -9,15 +9,35 @@ module.exports = {
 	count
 };
 
+// async function add(celeb) {
+// 	if (celeb.celebname && celeb.image_url && celeb.factoid && celeb.birthyear && (celeb.alive !== null)) {
+// 		const [output] = await db("celebrity").insert(celeb, "id");
+// 		clg(17,[output])
+// 		return ({ status: 201, msg: getById(output) });
+// 	} else {
+// 		return ({ status: 418, msg: "Incomplete CELEBRITY info. Check that all fields are sent." })
+// 	}
+// }
+
 async function add(celeb) {
-	if (celeb.celebname && celeb.image_url && celeb.factoid && celeb.birthyear && (celeb.alive !== null)) {
-		const [output] = await db("celebrity").insert(celeb, "id");
-		clg(17,[output])
-		return ({ status: 201, msg: getById(output) });
+	if (
+	  celeb.celebname &&
+	  celeb.image_url &&
+	  celeb.factoid &&
+	  celeb.birthyear &&
+	  celeb.alive !== null
+	) {
+	  const [output] = await db("celebrity").insert(celeb, "id");
+	  clg(17, [output]);
+	  const inserted = await getById(output);
+	  return Promise.resolve({ status: 201, msg: inserted });
 	} else {
-		return ({ status: 418, msg: "Incomplete CELEBRITY info. Check that all fields are sent." })
+	  return Promise.reject({
+		status: 418,
+		msg: "Incomplete CELEBRITY info. Check that all fields are sent.",
+	  });
 	}
-}
+  }
 
 async function change(celeb) {
 	// clg(23,celeb)
